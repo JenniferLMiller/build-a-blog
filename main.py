@@ -64,7 +64,8 @@ class AddPost(Handler):
         if title and body:
             a = Post(title = title, body = body)
             a.put()
-            self.redirect("/blog")
+            new_id = str(Post.key(a).id())
+            self.redirect("/blog/" + new_id)
         else:
             error = "Enter both a title and a body before posting"
             self.render_front(title, body, error)
